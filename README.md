@@ -1,3 +1,8 @@
+<p align="right">
+  <img src="https://img.shields.io/badge/🇬🇧_English-22d3ee?style=for-the-badge&labelColor=0b1020" alt="English (current)"/>
+  <a href="README.uk.md"><img src="https://img.shields.io/badge/🇺🇦_Українська-1e293b?style=for-the-badge&labelColor=0b1020" alt="Українська"/></a>
+</p>
+
 <p align="center">
   <img src="assets/header.svg" alt="Maksym Zakrevskyi — Python backend, AI dev tooling, Windows utilities" width="880"/>
 </p>

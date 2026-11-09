@@ -1,4 +1,4 @@
-"""Generate profile stat cards (assets/stats.svg, assets/languages.svg).
+"""Generate profile stat cards: assets/{stats,languages}.svg (EN) and *.uk.svg (UA).
 
 Stdlib only. Uses GITHUB_TOKEN if set (needed for commit counts and to avoid
 the 60 req/h anonymous limit). Run from the repository root:
@@ -108,17 +108,29 @@ def frame(w: int, h: int, title: str, body: str) -> str:
     )
 
 
-def stats_svg(s: dict) -> str:
+T = {
+    "en": {"own": "own repositories", "stars": "stars earned", "commits": "commits this year",
+           "forks": "forks studied", "followers": "followers", "prs": "pull requests",
+           "years": "on GitHub", "langs": "languages", "y": "y",
+           "t_stats": "GitHub at a glance", "t_langs": "Languages · own code"},
+    "uk": {"own": "власних репозиторіїв", "stars": "зірок отримано", "commits": "комітів цього року",
+           "forks": "форків вивчено", "followers": "підписників", "prs": "pull requests",
+           "years": "на GitHub", "langs": "мов", "y": "р",
+           "t_stats": "GitHub коротко", "t_langs": "Мови · власний код"},
+}
+
+
+def stats_svg(s: dict, lang: str = "en") -> str:
+    t = T[lang]
+    yrs = f'{s["years"]}{t["y"]}'
+    has = s["commits"] is not None
     items = [
-        (s["own"], "own repositories"),
-        (s["stars"], "stars earned"),
-        (s["commits"] if s["commits"] is not None else s["forks"],
-         "commits this year" if s["commits"] is not None else "forks studied"),
-        (s["followers"], "followers"),
-        (s["prs"] if s["prs"] is not None else f'{s["years"]}y',
-         "pull requests" if s["prs"] is not None else "on GitHub"),
-        (f'{s["years"]}y' if s["prs"] is not None else len(s["langs"]),
-         "on GitHub" if s["prs"] is not None else "languages"),
+        (s["own"], t["own"]),
+        (s["stars"], t["stars"]),
+        (s["commits"] if has else s["forks"], t["commits"] if has else t["forks"]),
+        (s["followers"], t["followers"]),
+        (s["prs"] if has else yrs, t["prs"] if has else t["years"]),
+        (yrs if has else len(s["langs"]), t["years"] if has else t["langs"]),
     ]
     accents = ["#22d3ee", "#a78bfa", "#e879f9", "#4ade80", "#fbbf24", "#f87171"]
     body = ""
@@ -131,10 +143,10 @@ def stats_svg(s: dict) -> str:
             f'<text x="{x+14}" y="{y+24}" class="sans v">{escape(str(val))}</text>'
             f'<text x="{x+14}" y="{y+42}" class="sans l">{escape(label)}</text></g>'
         )
-    return frame(440, 210, "GitHub at a glance", body)
+    return frame(440, 210, t["t_stats"], body)
 
 
-def langs_svg(s: dict) -> str:
+def langs_svg(s: dict, lang: str = "en") -> str:
     langs = {k: v for k, v in s["langs"].items() if k not in SKIP_LANGS}
     total = sum(langs.values()) or 1
     top = sorted(langs.items(), key=lambda kv: -kv[1])[:6]
@@ -158,15 +170,17 @@ def langs_svg(s: dict) -> str:
             f'<text x="{cx+18}" y="{cy}" class="sans n">{escape(name)}</text>'
             f'<text x="{cx+180}" y="{cy}" text-anchor="end" class="mono p">{size/total*100:.1f}%</text></g>'
         )
-    return frame(440, 210, "Languages · own code", bar + rows)
+    return frame(440, 210, T[lang]["t_langs"], bar + rows)
 
 
 def main() -> None:
     user = sys.argv[1] if len(sys.argv) > 1 else "Mattakushi432"
     s = collect(user)
     OUT.mkdir(exist_ok=True)
-    (OUT / "stats.svg").write_text(stats_svg(s), encoding="utf-8")
-    (OUT / "languages.svg").write_text(langs_svg(s), encoding="utf-8")
+    for lang in T:
+        suffix = "" if lang == "en" else f".{lang}"
+        (OUT / f"stats{suffix}.svg").write_text(stats_svg(s, lang), encoding="utf-8")
+        (OUT / f"languages{suffix}.svg").write_text(langs_svg(s, lang), encoding="utf-8")
     print(json.dumps({k: v for k, v in s.items() if k != "langs"}), file=sys.stderr)
 
 
