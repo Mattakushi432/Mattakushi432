@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="250" viewBox="0 0 880 250" role="img" aria-label="Maksym Zakrevskyi — Python backend &amp; AI tooling">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#120b24"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.5" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#e879f9"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.85" cy="0.1" r="0.6">
+      <stop offset="0" stop-color="#a855f7" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.05" cy="1" r="0.55">
+      <stop offset="0" stop-color="#06b6d4" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <path d="M22 0H0V22" fill="none" stroke="#ffffff" stroke-opacity="0.045"/>
+    </pattern>
+    <clipPath id="card"><rect width="880" height="250" rx="18"/></clipPath>
+    <style>
+      .mono{font-family:ui-monospace,SFMono-Regular,"JetBrains Mono",Consolas,"Liberation Mono",monospace}
+      .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif}
+      .name{font-size:42px;font-weight:800;letter-spacing:-0.5px}
+      .muted{fill:#94a3b8}
+      .dim{fill:#64748b}
+      .role{font-size:19px;fill:#e2e8f0;opacity:0}
+      .r1{animation:cycle 12s infinite 0s}
+      .r2{animation:cycle 12s infinite 4s}
+      .r3{animation:cycle 12s infinite 8s}
+      @keyframes cycle{0%{opacity:0;transform:translateY(6px)}4%{opacity:1;transform:none}29%{opacity:1;transform:none}33%{opacity:0;transform:translateY(-6px)}100%{opacity:0}}
+      .cursor{animation:blink 1s steps(1) infinite}
+      @keyframes blink{50%{opacity:0}}
+      .scan{animation:scan 6s linear infinite}
+      @keyframes scan{0%{transform:translateY(-40px)}100%{transform:translateY(290px)}}
+      .pulse{animation:pulse 2.4s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+      .orb{animation:float 9s ease-in-out infinite}
+      @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-14px,10px)}}
+      @media (prefers-reduced-motion: reduce){.r1,.r2,.r3,.cursor,.scan,.pulse,.orb{animation:none}.r1{opacity:1}}
+    </style>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="880" height="250" fill="url(#bg)"/>
+    <rect width="880" height="250" fill="url(#grid)"/>
+    <g class="orb"><rect width="880" height="250" fill="url(#glow1)"/></g>
+    <rect width="880" height="250" fill="url(#glow2)"/>
+    <rect class="scan" x="0" y="0" width="880" height="38" fill="#22d3ee" opacity="0.035"/>
+
+    <!-- window chrome -->
+    <circle cx="30" cy="28" r="6" fill="#ff5f57"/>
+    <circle cx="50" cy="28" r="6" fill="#febc2e"/>
+    <circle cx="70" cy="28" r="6" fill="#28c840"/>
+    <text x="440" y="33" text-anchor="middle" class="mono dim" font-size="13">~/mattakushi432 — zsh</text>
+    <line x1="0" y1="52" x2="880" y2="52" stroke="#ffffff" stroke-opacity="0.07"/>
+
+    <!-- prompt -->
+    <text x="40" y="88" class="mono" font-size="15"><tspan fill="#22d3ee">maksym</tspan><tspan class="dim">@</tspan><tspan fill="#a78bfa">ukraine</tspan><tspan class="dim"> ~ $ </tspan><tspan fill="#e2e8f0">whoami</tspan></text>
+
+    <!-- name -->
+    <text x="38" y="140" class="sans name" fill="url(#accent)">Maksym Zakrevskyi</text>
+
+    <!-- rotating roles -->
+    <g class="mono">
+      <text x="40" y="178" class="role r1"><tspan fill="#22d3ee">›</tspan> Python backend · FastAPI / Django</text>
+      <text x="40" y="178" class="role r2"><tspan fill="#a78bfa">›</tspan> AI dev tooling · Claude Code skills · local LLMs</text>
+      <text x="40" y="178" class="role r3"><tspan fill="#e879f9">›</tspan> Windows desktop utilities &amp; automation</text>
+    </g>
+
+    <!-- footer line -->
+    <text x="40" y="222" class="mono" font-size="13"><tspan class="muted">🇺🇦 Ukraine</tspan><tspan class="dim">  ·  </tspan><tspan class="muted">EN / UK / RU</tspan><tspan class="dim">  ·  </tspan><tspan class="muted">open to collaboration</tspan><tspan fill="#22d3ee" class="cursor"> ▋</tspan></text>
+
+    <!-- right-side code glyph -->
+    <g transform="translate(662 96)" class="mono" font-size="13">
+      <rect x="-16" y="-26" width="200" height="124" rx="12" fill="#0f172a" fill-opacity="0.85" stroke="url(#accent)" stroke-opacity="0.6"/>
+      <text x="0" y="0"><tspan fill="#c084fc">async def</tspan><tspan fill="#e2e8f0"> ship(</tspan><tspan fill="#22d3ee">idea</tspan><tspan fill="#e2e8f0">):</tspan></text>
+      <text x="18" y="22" class="muted">await build(idea)</text>
+      <text x="18" y="44" class="muted">await test()</text>
+      <text x="18" y="66" fill="#4ade80">return "✓ shipped"</text>
+      <text x="0" y="88" class="dim"># local-first, always</text>
+      <circle cx="170" cy="-12" r="4" fill="#4ade80" class="pulse"/>
+    </g>
+  </g>
+  <rect x="0.5" y="0.5" width="879" height="249" rx="18" fill="none" stroke="url(#accent)" stroke-opacity="0.35"/>
+</svg>
