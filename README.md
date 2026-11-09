@@ -34,7 +34,7 @@ explains itself, and doesn't phone home. Local LLMs over cloud APIs where it's
 possible, a Docker Compose file over a ten-page setup guide, a single `.exe`
 over an installer that wants admin rights for no reason.
 
-I write docs in English and Ukrainian (sometimes Russian) — bilingual
+I write docs in English and Ukrainian — bilingual
 projects are a habit, not an afterthought.
 
 ---
